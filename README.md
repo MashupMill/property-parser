@@ -21,12 +21,16 @@ hello=it's a foo ${foo} world
 And once you have your executable jar you may then run something like this:
 
 ```bash
-java -jar target/property-parser-1.0-SNAPSHOT.jar src/test/resources/test.properties
+java -jar target/property-parser-1.0-SNAPSHOT.jar src/test/resources/test.properties -q
 ```
 
-It should output something like this: `-Dfoo=bar -Dhello='it\'s a foo bar world'`
+It should output something like this: `-Dfoo=bar '-Dhello=it\'s a foo bar world'`
 
 # Changelog
+
+### 1.2
+
+* Move the beginning of the wrapper quotes to include the `-Dkey=`. So instead of `-Dfoo='the bar'` it becomes `'-Dfoo=the bar'`
 
 ### 1.1
 

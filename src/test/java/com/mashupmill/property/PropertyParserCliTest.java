@@ -12,18 +12,17 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.PrintStream;
 
+import static com.mashupmill.property.PropertyParserTest.PROPERTIES_FILE;
+import static com.mashupmill.property.PropertyParserTest.EXPECTED_SLASH;
+import static com.mashupmill.property.PropertyParserTest.EXPECTED_SINGLE_QUOTE;
+import static com.mashupmill.property.PropertyParserTest.EXPECTED_DOUBLE_QUOTE;
+
 /**
  * Created 10/8/15 @ 2:41 PM
  *
  * @author brandencash
  */
 public class PropertyParserCliTest {
-
-    private final static String PROPERTIES_FILE = "test.properties";
-
-    private final static String EXPECTED_SINGLE_QUOTE = "-Dfoo=bar -Dhello='it\\'s a foo bar world' -Descaped=this\\ is\\ already\\ escaped";
-    private final static String EXPECTED_DOUBLE_QUOTE = "-Dfoo=bar -Dhello=\"it's a foo bar world\" -Descaped=this\\ is\\ already\\ escaped";
-    private final static String EXPECTED_SLASH = "-Dfoo=bar -Dhello=it\\'s\\ a\\ foo\\ bar\\ world -Descaped=this\\ is\\ already\\ escaped";
 
     private final ByteArrayOutputStream stdout = new ByteArrayOutputStream();
     private final ByteArrayOutputStream stderr = new ByteArrayOutputStream();

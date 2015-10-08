@@ -29,18 +29,20 @@ public class PropertyParser {
         while(it.hasNext()) {
             String key = it.next();
             String value = props.getString(key);
+            String wrapper = "";
             if (value.replaceAll("\\\\ ", "").contains(" ")) {
                 // Get the escape character
                 String echar = escapeType.getEscapeChar();
 
                 // if the escape type is a wrapper, then we should wrap the value, otherwise we escape individual characters
                 if (escapeType.isWrapper()) {
-                    value = echar + value.replace(String.valueOf(echar), "\\" + echar) + echar;
+                    value = value.replace(String.valueOf(echar), "\\" + echar);
+                    wrapper = echar;
                 } else {
                     value = value.replaceAll("([ '\"])", "\\" + echar + "$1");
                 }
             }
-            opts.append(String.format(" -D%s=%s", key, value));
+            opts.append(String.format(" %s-D%s=%s%s", wrapper, key, value, wrapper));
         }
 
         return opts.toString().trim();
