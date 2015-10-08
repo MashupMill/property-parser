@@ -12,14 +12,6 @@ import java.util.Iterator;
  */
 public class PropertyParser {
 
-    public static void main(String[] args) {
-        try {
-            System.out.println(getOptionList(args[0]));
-        } catch (ConfigurationException e) {
-            e.printStackTrace();
-        }
-    }
-
     public static String getOptionList(String filename) throws ConfigurationException {
         return getOptionList(filename, null);
     }

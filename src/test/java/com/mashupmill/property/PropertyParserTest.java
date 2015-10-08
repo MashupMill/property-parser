@@ -15,37 +15,34 @@ public class PropertyParserTest {
 
     @Test
     public void testGetOptionListDefaultEscape() throws Exception {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(PROPERTIES_FILE).getFile());
-        String actual = PropertyParser.getOptionList(file.getAbsolutePath());
+        String actual = PropertyParser.getOptionList(getPropertiesFile().getAbsolutePath());
         Assert.assertNotNull(actual);
         Assert.assertEquals(EXPECTED_SLASH, actual);
     }
 
     @Test
     public void testGetOptionListSingleQuote() throws Exception {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(PROPERTIES_FILE).getFile());
-        String actual = PropertyParser.getOptionList(file.getAbsolutePath(), EscapeType.SINGLE_QUOTE);
+        String actual = PropertyParser.getOptionList(getPropertiesFile().getAbsolutePath(), EscapeType.SINGLE_QUOTE);
         Assert.assertNotNull(actual);
         Assert.assertEquals(EXPECTED_SINGLE_QUOTE, actual);
     }
 
     @Test
     public void testGetOptionListDoubleQuote() throws Exception {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(PROPERTIES_FILE).getFile());
-        String actual = PropertyParser.getOptionList(file.getAbsolutePath(), EscapeType.DOUBLE_QUOTE);
+        String actual = PropertyParser.getOptionList(getPropertiesFile().getAbsolutePath(), EscapeType.DOUBLE_QUOTE);
         Assert.assertNotNull(actual);
         Assert.assertEquals(EXPECTED_DOUBLE_QUOTE, actual);
     }
 
     @Test
     public void testGetOptionListSlash() throws Exception {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(PROPERTIES_FILE).getFile());
-        String actual = PropertyParser.getOptionList(file.getAbsolutePath(), EscapeType.SLASH);
+        String actual = PropertyParser.getOptionList(getPropertiesFile().getAbsolutePath(), EscapeType.SLASH);
         Assert.assertNotNull(actual);
         Assert.assertEquals(EXPECTED_SLASH, actual);
+    }
+
+    private File getPropertiesFile() {
+        ClassLoader classLoader = getClass().getClassLoader();
+        return new File(classLoader.getResource(PROPERTIES_FILE).getFile());
     }
 }
