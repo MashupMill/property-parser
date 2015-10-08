@@ -28,7 +28,7 @@ It should output something like this: `-Dfoo=bar '-Dhello=it\'s a foo bar world'
 
 # Changelog
 
-### 1.2-SNAPSHOT
+### 1.2
 
 * Move the beginning of the wrapper quotes to include the `-Dkey=`. So instead of `-Dfoo='the bar'` it becomes `'-Dfoo=the bar'`
 
