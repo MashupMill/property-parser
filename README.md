@@ -25,3 +25,17 @@ java -jar target/property-parser-1.0-SNAPSHOT.jar src/test/resources/test.proper
 ```
 
 It should output something like this: `-Dfoo=bar -Dhello='it\'s a foo bar world'`
+
+# Changelog
+
+### 1.1
+
+* Added escape type options:
+    * -s / --slash which escapes spaces with a back slash
+    * -q / --single-quote which escapes values with spaces by wrapping them in single quotes
+    * -d / --double-quote which escapes values with spaces by wrapping them in double quotes
+* Default escape type is back slash (which is different from v1.0...single quotes)
+
+### 1.0
+
+* Initial release. Parses properties file as java `-D` options. Escapes the values with spaces by wrapping the value in single quotes.

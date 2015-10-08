@@ -12,15 +12,15 @@ import java.util.Iterator;
  */
 public class PropertyParser {
 
-    public static void main(String[] args) {
-        try {
-            System.out.println(getOptionList(args[0]));
-        } catch (ConfigurationException e) {
-            e.printStackTrace();
-        }
+    public static String getOptionList(String filename) throws ConfigurationException {
+        return getOptionList(filename, null);
     }
 
-    public static String getOptionList(String filename) throws ConfigurationException {
+    public static String getOptionList(String filename, EscapeType escapeType) throws ConfigurationException {
+        if (escapeType == null) {
+            escapeType = EscapeType.SLASH;
+        }
+
         StringBuilder opts = new StringBuilder();
 
         PropertiesConfiguration props = new PropertiesConfiguration(filename);
@@ -29,8 +29,16 @@ public class PropertyParser {
         while(it.hasNext()) {
             String key = it.next();
             String value = props.getString(key);
-            if (value.contains(" ")) {
-                value = "'" + value.replace("'", "\\'") + "'";
+            if (value.replaceAll("\\\\ ", "").contains(" ")) {
+                // Get the escape character
+                String echar = escapeType.getEscapeChar();
+
+                // if the escape type is a wrapper, then we should wrap the value, otherwise we escape individual characters
+                if (escapeType.isWrapper()) {
+                    value = echar + value.replace(String.valueOf(echar), "\\" + echar) + echar;
+                } else {
+                    value = value.replaceAll("([ '\"])", "\\" + echar + "$1");
+                }
             }
             opts.append(String.format(" -D%s=%s", key, value));
         }
