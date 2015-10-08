@@ -13,7 +13,7 @@ public class PropertyParserTest {
     public void testGetOptionList() throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource(PROPERTIES_FILE).getFile());
-        String expected = "-Dfoo=bar -Dhello='it\\'s a foo bar world'";
+        String expected = "-Dfoo=bar -Dhello='it\\'s a foo bar world' -Descaped=this\\ is\\ already\\ escaped";
         String actual = PropertyParser.getOptionList(file.getAbsolutePath());
         Assert.assertNotNull(actual);
         Assert.assertEquals(expected, actual);

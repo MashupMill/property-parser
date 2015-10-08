@@ -29,7 +29,7 @@ public class PropertyParser {
         while(it.hasNext()) {
             String key = it.next();
             String value = props.getString(key);
-            if (value.contains(" ")) {
+            if (value.replaceAll("\\\\ ", "").contains(" ")) {
                 value = "'" + value.replace("'", "\\'") + "'";
             }
             opts.append(String.format(" -D%s=%s", key, value));
