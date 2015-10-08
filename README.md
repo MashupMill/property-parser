@@ -1,6 +1,8 @@
 # property-parser
 Simple java application that parses a java properties file (using apache's commons-configuration) and outputs it as program arguments
 
+[![Build Status](https://travis-ci.org/MashupMill/property-parser.svg?branch=master)](https://travis-ci.org/MashupMill/property-parser)
+
 # Compiling
 
 Must have maven installed
@@ -27,6 +29,10 @@ java -jar target/property-parser-1.0-SNAPSHOT.jar src/test/resources/test.proper
 It should output something like this: `-Dfoo=bar '-Dhello=it\'s a foo bar world'`
 
 # Changelog
+
+### 1.2.1
+
+* Added travis-ci build
 
 ### 1.2
 
