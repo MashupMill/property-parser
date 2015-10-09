@@ -12,6 +12,7 @@ public class PropertyParserTest {
     public final static String EXPECTED_SINGLE_QUOTE = "-Dfoo=bar '-Dhello=it\\'s a foo bar world' -Descaped=this\\ is\\ already\\ escaped";
     public final static String EXPECTED_DOUBLE_QUOTE = "-Dfoo=bar \"-Dhello=it's a foo bar world\" -Descaped=this\\ is\\ already\\ escaped";
     public final static String EXPECTED_SLASH = "-Dfoo=bar -Dhello=it\\'s\\ a\\ foo\\ bar\\ world -Descaped=this\\ is\\ already\\ escaped";
+    public final static String EXPECTED_NO_ESCAPE = "-Dfoo=bar -Dhello=it's a foo bar world -Descaped=this\\ is\\ already\\ escaped";
 
     @Test
     public void testGetOptionListDefaultEscape() throws Exception {
@@ -39,6 +40,13 @@ public class PropertyParserTest {
         String actual = PropertyParser.getOptionList(getPropertiesFile().getAbsolutePath(), EscapeType.SLASH);
         Assert.assertNotNull(actual);
         Assert.assertEquals(EXPECTED_SLASH, actual);
+    }
+
+    @Test
+    public void testGetOptionListNoEscape() throws Exception {
+        String actual = PropertyParser.getOptionList(getPropertiesFile().getAbsolutePath(), EscapeType.NONE);
+        Assert.assertNotNull(actual);
+        Assert.assertEquals(EXPECTED_NO_ESCAPE, actual);
     }
 
     private File getPropertiesFile() {
