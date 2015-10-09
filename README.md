@@ -30,6 +30,11 @@ It should output something like this: `-Dfoo=bar '-Dhello=it\'s a foo bar world'
 
 # Changelog
 
+### 1.3
+
+* Added EscapeType.NONE
+* Change default EscapeType to DOUBLE_QUOTE
+
 ### 1.2.1
 
 * Added travis-ci build

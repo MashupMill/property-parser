@@ -18,7 +18,7 @@ public class PropertyParser {
 
     public static String getOptionList(String filename, EscapeType escapeType) throws ConfigurationException {
         if (escapeType == null) {
-            escapeType = EscapeType.SLASH;
+            escapeType = EscapeType.DOUBLE_QUOTE;
         }
 
         StringBuilder opts = new StringBuilder();
@@ -30,10 +30,8 @@ public class PropertyParser {
             String key = it.next();
             String value = props.getString(key);
             String wrapper = "";
-            if (value.replaceAll("\\\\ ", "").contains(" ")) {
-                // Get the escape character
-                String echar = escapeType.getEscapeChar();
-
+            String echar = escapeType.getEscapeChar();
+            if (echar != null && value.replaceAll("\\\\ ", "").contains(" ")) {
                 // if the escape type is a wrapper, then we should wrap the value, otherwise we escape individual characters
                 if (escapeType.isWrapper()) {
                     value = value.replace(String.valueOf(echar), "\\" + echar);

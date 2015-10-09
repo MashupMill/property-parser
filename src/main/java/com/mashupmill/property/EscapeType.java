@@ -6,7 +6,7 @@ package com.mashupmill.property;
  * @author brandencash
  */
 public enum EscapeType {
-    DOUBLE_QUOTE("\"", true), SINGLE_QUOTE("'", true), SLASH("\\", false);
+    NONE(null, false), DOUBLE_QUOTE("\"", true), SINGLE_QUOTE("'", true), SLASH("\\", false);
 
     private String escapeChar;
     private boolean wrapper;

@@ -12,10 +12,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.PrintStream;
 
-import static com.mashupmill.property.PropertyParserTest.PROPERTIES_FILE;
-import static com.mashupmill.property.PropertyParserTest.EXPECTED_SLASH;
-import static com.mashupmill.property.PropertyParserTest.EXPECTED_SINGLE_QUOTE;
 import static com.mashupmill.property.PropertyParserTest.EXPECTED_DOUBLE_QUOTE;
+import static com.mashupmill.property.PropertyParserTest.EXPECTED_NO_ESCAPE;
+import static com.mashupmill.property.PropertyParserTest.EXPECTED_SINGLE_QUOTE;
+import static com.mashupmill.property.PropertyParserTest.EXPECTED_SLASH;
+import static com.mashupmill.property.PropertyParserTest.PROPERTIES_FILE;
 
 /**
  * Created 10/8/15 @ 2:41 PM
@@ -45,7 +46,7 @@ public class PropertyParserCliTest {
     @Test
     public void testCliDefault() throws Exception {
         PropertyParserCli.main(new String[]{getPropertiesFile().getAbsolutePath()});
-        Assert.assertEquals(EXPECTED_SLASH, stdout.toString().trim());
+        Assert.assertEquals(EXPECTED_DOUBLE_QUOTE, stdout.toString().trim());
     }
 
     @Test
@@ -64,6 +65,12 @@ public class PropertyParserCliTest {
     public void testCliDoubleQuote() throws Exception {
         PropertyParserCli.main(new String[]{getPropertiesFile().getAbsolutePath(), "-d"});
         Assert.assertEquals(EXPECTED_DOUBLE_QUOTE, stdout.toString().trim());
+    }
+
+    @Test
+    public void testCliNoEscape() throws Exception {
+        PropertyParserCli.main(new String[]{getPropertiesFile().getAbsolutePath(), "-n"});
+        Assert.assertEquals(EXPECTED_NO_ESCAPE, stdout.toString().trim());
     }
 
     @Test

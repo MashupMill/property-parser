@@ -22,6 +22,7 @@ public class PropertyParserCli {
             EscapeType escapeType = line.hasOption("s") ? EscapeType.SLASH : null;
             escapeType = line.hasOption("q") ? EscapeType.SINGLE_QUOTE : escapeType;
             escapeType = line.hasOption("d") ? EscapeType.DOUBLE_QUOTE : escapeType;
+            escapeType = line.hasOption("n") ? EscapeType.NONE : escapeType;
 
             System.out.println(PropertyParser.getOptionList(args[0], escapeType));
         } catch (Exception e) {
@@ -40,6 +41,7 @@ public class PropertyParserCli {
         escapeType.addOption(new Option("s", "slash", false, "escape with back slash"));
         escapeType.addOption(new Option("q", "single-quote", false, "escape with single quotes"));
         escapeType.addOption(new Option("d", "double-quote", false, "escape with double quotes"));
+        escapeType.addOption(new Option("n", "no-escape", false, "don't escape characters"));
         options.addOptionGroup(escapeType);
 
         // parse the command line arguments
