@@ -18,7 +18,7 @@ public class PropertyParserTest {
     public void testGetOptionListDefaultEscape() throws Exception {
         String actual = PropertyParser.getOptionList(getPropertiesFile().getAbsolutePath());
         Assert.assertNotNull(actual);
-        Assert.assertEquals(EXPECTED_SLASH, actual);
+        Assert.assertEquals(EXPECTED_DOUBLE_QUOTE, actual);
     }
 
     @Test

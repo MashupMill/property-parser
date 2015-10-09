@@ -46,7 +46,7 @@ public class PropertyParserCliTest {
     @Test
     public void testCliDefault() throws Exception {
         PropertyParserCli.main(new String[]{getPropertiesFile().getAbsolutePath()});
-        Assert.assertEquals(EXPECTED_SLASH, stdout.toString().trim());
+        Assert.assertEquals(EXPECTED_DOUBLE_QUOTE, stdout.toString().trim());
     }
 
     @Test

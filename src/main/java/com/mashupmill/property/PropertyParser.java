@@ -18,7 +18,7 @@ public class PropertyParser {
 
     public static String getOptionList(String filename, EscapeType escapeType) throws ConfigurationException {
         if (escapeType == null) {
-            escapeType = EscapeType.SLASH;
+            escapeType = EscapeType.DOUBLE_QUOTE;
         }
 
         StringBuilder opts = new StringBuilder();
