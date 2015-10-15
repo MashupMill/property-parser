@@ -33,7 +33,7 @@ It should output something like this: `-Dfoo=bar '-Dhello=it\'s a foo bar world'
 ## `template`
 
 The `template` command takes a properties file and a template file (or takes text from stdin) and does string substitution on the input using the properties file.
-The string substitution is done using Apache's [StrSubstitutor](https://commons.apache.org/proper/commons-lang/javadocs/api-2.6/org/apache/commons/lang/text/StrSubstitutor.html).
+The string substitution is done using Apache's [StrSubstitutor](https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/text/StrSubstitutor.html).
 
 You can run the `template` command using something like this:
 
@@ -48,6 +48,12 @@ java -jar target/property-parser-1.4.jar template -o /tmp/output.html src/test/r
 ```
 
 # Changelog
+
+### 1.5
+
+* Ditch commons-configuration ... didn't like how it handled the properties (i.e. first properties take precedence in some cases, and then when doing the str substitution thing it would put substitute `${foo}` with `[default, bar]` instead of just `bar`. So instead just use the default java properties class and use StrSubstitutor to do nested property substitutions.
+* Bring in commons-lang3
+* Now the last properties take precedence over the first 
 
 ### 1.4
 

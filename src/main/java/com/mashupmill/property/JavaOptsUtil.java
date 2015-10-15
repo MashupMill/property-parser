@@ -1,9 +1,11 @@
 package com.mashupmill.property;
 
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
+import org.apache.commons.lang3.text.StrSubstitutor;
 
-import java.util.Iterator;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * Created 10/7/15 @ 11:44 AM
@@ -12,23 +14,25 @@ import java.util.Iterator;
  */
 public class JavaOptsUtil {
 
-    public static String getOptionList(String filename) throws ConfigurationException {
+    public static String getOptionList(String filename) throws IOException {
         return getOptionList(filename, null);
     }
 
-    public static String getOptionList(String filename, EscapeType escapeType) throws ConfigurationException {
+    public static String getOptionList(String filename, EscapeType escapeType) throws IOException {
         if (escapeType == null) {
             escapeType = EscapeType.DOUBLE_QUOTE;
         }
 
         StringBuilder opts = new StringBuilder();
+        Map props = new Properties();
+        ((Properties) props).load(new FileInputStream(filename));
+        StrSubstitutor substitutor = new StrSubstitutor(props);
+        substitutor.setEnableSubstitutionInVariables(true);
 
-        PropertiesConfiguration props = new PropertiesConfiguration(filename);
-        Iterator<String> it = props.getKeys();
-
-        while(it.hasNext()) {
-            String key = it.next();
-            String value = props.getString(key);
+        //PropertiesConfiguration props = new PropertiesConfiguration(filename);
+        for (Map.Entry<Object, Object> set : ((Properties) props).entrySet()) {
+            String key = String.valueOf(set.getKey());
+            String value = substitutor.replace(String.valueOf(set.getValue()));
             String wrapper = "";
             String echar = escapeType.getEscapeChar();
             if (echar != null && value.replaceAll("\\\\ ", "").contains(" ")) {

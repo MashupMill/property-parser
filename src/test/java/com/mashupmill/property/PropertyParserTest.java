@@ -9,10 +9,10 @@ public class PropertyParserTest {
 
     public final static String PROPERTIES_FILE = "test.properties";
 
-    public final static String EXPECTED_SINGLE_QUOTE = "-Dfoo=bar '-Dhello=it\\'s a foo bar world' -Descaped=this\\ is\\ already\\ escaped";
-    public final static String EXPECTED_DOUBLE_QUOTE = "-Dfoo=bar \"-Dhello=it's a foo bar world\" -Descaped=this\\ is\\ already\\ escaped";
-    public final static String EXPECTED_SLASH = "-Dfoo=bar -Dhello=it\\'s\\ a\\ foo\\ bar\\ world -Descaped=this\\ is\\ already\\ escaped";
-    public final static String EXPECTED_NO_ESCAPE = "-Dfoo=bar -Dhello=it's a foo bar world -Descaped=this\\ is\\ already\\ escaped";
+    public final static String EXPECTED_SINGLE_QUOTE = "'-Dhello=it\\'s a foo bar world' -Descaped=this\\ is\\ already\\ escaped -Dfoo=bar";
+    public final static String EXPECTED_DOUBLE_QUOTE = "\"-Dhello=it's a foo bar world\" -Descaped=this\\ is\\ already\\ escaped -Dfoo=bar";
+    public final static String EXPECTED_SLASH = "-Dhello=it\\'s\\ a\\ foo\\ bar\\ world -Descaped=this\\ is\\ already\\ escaped -Dfoo=bar";
+    public final static String EXPECTED_NO_ESCAPE = "-Dhello=it's a foo bar world -Descaped=this\\ is\\ already\\ escaped -Dfoo=bar";
 
     @Test
     public void testGetOptionListDefaultEscape() throws Exception {

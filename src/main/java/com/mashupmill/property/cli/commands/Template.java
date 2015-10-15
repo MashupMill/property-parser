@@ -6,16 +6,16 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.apache.commons.configuration.ConfigurationConverter;
-import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.text.StrSubstitutor;
+import org.apache.commons.lang3.text.StrSubstitutor;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * Created 10/14/15 @ 10:40 PM
@@ -50,7 +50,10 @@ public class Template implements Command {
                 return;
             }
 
-            PropertiesConfiguration props = new PropertiesConfiguration(line.getArgs()[0]);
+            Map props = new Properties();
+            ((Properties) props).load(new FileInputStream(line.getArgs()[0]));
+            StrSubstitutor substitutor = new StrSubstitutor(props);
+            substitutor.setEnableSubstitutionInVariables(true);
 
             InputStream input = System.in;
             OutputStream output = System.out;
@@ -61,7 +64,7 @@ public class Template implements Command {
 
                 String template = IOUtils.toString(input, Charset.defaultCharset());
 
-                output.write(StrSubstitutor.replace(template, ConfigurationConverter.getMap(props)).getBytes());
+                output.write(substitutor.replace(template).getBytes());
 
             } finally {
                 if (input != System.in) IOUtils.closeQuietly(input);

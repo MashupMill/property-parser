@@ -6,13 +6,13 @@
 
     <groupId>com.mashupmill.property</groupId>
     <artifactId>property-parser</artifactId>
-    <version>1.4</version>
+    <version>1.5</version>
 
     <dependencies>
         <dependency>
-            <groupId>commons-configuration</groupId>
-            <artifactId>commons-configuration</artifactId>
-            <version>1.10</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
         </dependency>
         <dependency>
             <groupId>commons-cli</groupId>
