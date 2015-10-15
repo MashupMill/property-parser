@@ -49,7 +49,7 @@ java -jar target/property-parser-1.4.jar template -o /tmp/output.html src/test/r
 
 # Changelog
 
-### Latest
+### 1.5
 
 * Ditch commons-configuration ... didn't like how it handled the properties (i.e. first properties take precedence in some cases, and then when doing the str substitution thing it would put substitute `${foo}` with `[default, bar]` instead of just `bar`. So instead just use the default java properties class and use StrSubstitutor to do nested property substitutions.
 * Bring in commons-lang3
