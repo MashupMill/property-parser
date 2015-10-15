@@ -1,5 +1,7 @@
-package com.mashupmill.property;
+package com.mashupmill.property.cli.commands;
 
+import com.mashupmill.property.EscapeType;
+import com.mashupmill.property.JavaOptsUtil;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -9,13 +11,15 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 /**
- * Created 10/7/15 @ 11:44 AM
+ * Created 10/14/15 @ 11:14 PM
  *
  * @author brandencash
  */
-public class PropertyParserCli {
+public class ToJavaOpts implements Command {
+    public static final String NAME = "to-java-opts";
 
-    public static void main(String[] args) {
+    @Override
+    public void exec(String[] args) {
         try {
             CommandLine line = getCli(args);
 
@@ -24,14 +28,14 @@ public class PropertyParserCli {
             escapeType = line.hasOption("d") ? EscapeType.DOUBLE_QUOTE : escapeType;
             escapeType = line.hasOption("n") ? EscapeType.NONE : escapeType;
 
-            System.out.println(PropertyParser.getOptionList(args[0], escapeType));
+            System.out.println(JavaOptsUtil.getOptionList(args[0], escapeType));
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
         }
     }
 
-    protected static CommandLine getCli(String[] args) throws ParseException {
+    protected CommandLine getCli(String[] args) throws ParseException {
         // create the command line parser
         CommandLineParser parser = new DefaultParser();
 

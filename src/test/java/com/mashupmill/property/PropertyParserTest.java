@@ -16,35 +16,35 @@ public class PropertyParserTest {
 
     @Test
     public void testGetOptionListDefaultEscape() throws Exception {
-        String actual = PropertyParser.getOptionList(getPropertiesFile().getAbsolutePath());
+        String actual = JavaOptsUtil.getOptionList(getPropertiesFile().getAbsolutePath());
         Assert.assertNotNull(actual);
         Assert.assertEquals(EXPECTED_DOUBLE_QUOTE, actual);
     }
 
     @Test
     public void testGetOptionListSingleQuote() throws Exception {
-        String actual = PropertyParser.getOptionList(getPropertiesFile().getAbsolutePath(), EscapeType.SINGLE_QUOTE);
+        String actual = JavaOptsUtil.getOptionList(getPropertiesFile().getAbsolutePath(), EscapeType.SINGLE_QUOTE);
         Assert.assertNotNull(actual);
         Assert.assertEquals(EXPECTED_SINGLE_QUOTE, actual);
     }
 
     @Test
     public void testGetOptionListDoubleQuote() throws Exception {
-        String actual = PropertyParser.getOptionList(getPropertiesFile().getAbsolutePath(), EscapeType.DOUBLE_QUOTE);
+        String actual = JavaOptsUtil.getOptionList(getPropertiesFile().getAbsolutePath(), EscapeType.DOUBLE_QUOTE);
         Assert.assertNotNull(actual);
         Assert.assertEquals(EXPECTED_DOUBLE_QUOTE, actual);
     }
 
     @Test
     public void testGetOptionListSlash() throws Exception {
-        String actual = PropertyParser.getOptionList(getPropertiesFile().getAbsolutePath(), EscapeType.SLASH);
+        String actual = JavaOptsUtil.getOptionList(getPropertiesFile().getAbsolutePath(), EscapeType.SLASH);
         Assert.assertNotNull(actual);
         Assert.assertEquals(EXPECTED_SLASH, actual);
     }
 
     @Test
     public void testGetOptionListNoEscape() throws Exception {
-        String actual = PropertyParser.getOptionList(getPropertiesFile().getAbsolutePath(), EscapeType.NONE);
+        String actual = JavaOptsUtil.getOptionList(getPropertiesFile().getAbsolutePath(), EscapeType.NONE);
         Assert.assertNotNull(actual);
         Assert.assertEquals(EXPECTED_NO_ESCAPE, actual);
     }

@@ -28,7 +28,31 @@ java -jar target/property-parser-1.0-SNAPSHOT.jar src/test/resources/test.proper
 
 It should output something like this: `-Dfoo=bar '-Dhello=it\'s a foo bar world'`
 
+# Commands
+
+## `template`
+
+The `template` command takes a properties file and a template file (or takes text from stdin) and does string substitution on the input using the properties file.
+The string substitution is done using Apache's [StrSubstitutor](https://commons.apache.org/proper/commons-lang/javadocs/api-2.6/org/apache/commons/lang/text/StrSubstitutor.html).
+
+You can run the `template` command using something like this:
+
+```bash
+java -jar target/property-parser-1.4.jar template src/test/resources/test.properties src/test/resources/template.html
+```
+
+It will write the output to stdout, unless you specify an `-o` or `--out` argument like this:
+
+```bash
+java -jar target/property-parser-1.4.jar template -o /tmp/output.html src/test/resources/test.properties src/test/resources/template.html
+```
+
 # Changelog
+
+### Latest
+
+* Added 'command' framework
+* Added 'template' command. Which allows for replacing property placeholders in a file using Apache's [StrSubstitutor](https://commons.apache.org/proper/commons-lang/javadocs/api-2.6/org/apache/commons/lang/text/StrSubstitutor.html).
 
 ### 1.3
 

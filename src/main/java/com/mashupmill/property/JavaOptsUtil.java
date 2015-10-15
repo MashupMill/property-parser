@@ -10,7 +10,7 @@ import java.util.Iterator;
  *
  * @author brandencash
  */
-public class PropertyParser {
+public class JavaOptsUtil {
 
     public static String getOptionList(String filename) throws ConfigurationException {
         return getOptionList(filename, null);
