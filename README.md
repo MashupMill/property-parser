@@ -49,7 +49,7 @@ java -jar target/property-parser-1.4.jar template -o /tmp/output.html src/test/r
 
 # Changelog
 
-### Latest
+### 1.4
 
 * Added 'command' framework
 * Added 'template' command. Which allows for replacing property placeholders in a file using Apache's [StrSubstitutor](https://commons.apache.org/proper/commons-lang/javadocs/api-2.6/org/apache/commons/lang/text/StrSubstitutor.html).
