@@ -49,6 +49,10 @@ java -jar target/property-parser-1.4.jar template -o /tmp/output.html src/test/r
 
 # Changelog
 
+### 1.6
+
+* Added a `System.exit(0);` after running the command. Apparently not having this causes [issues in some kernels](https://github.com/docker/docker/issues/18180). I was experiencing defunct java processes in boot2docker 1.9.1.
+
 ### 1.5
 
 * Ditch commons-configuration ... didn't like how it handled the properties (i.e. first properties take precedence in some cases, and then when doing the str substitution thing it would put substitute `${foo}` with `[default, bar]` instead of just `bar`. So instead just use the default java properties class and use StrSubstitutor to do nested property substitutions.
